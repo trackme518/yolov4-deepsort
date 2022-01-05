@@ -93,6 +93,9 @@ def main(_argv):
     frame_num = 0
     # while video is running
     while True:
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            vid.release()
+            break
         return_value, frame = vid.read()
         if return_value:
             frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
@@ -103,6 +106,7 @@ def main(_argv):
         frame_num +=1
         print('Frame #: ', frame_num)
         frame_size = frame.shape[:2]
+        #print('video original size ', frame_size)
         image_data = cv2.resize(frame, (input_size, input_size))
         image_data = image_data / 255.
         image_data = image_data[np.newaxis, ...].astype(np.float32)
@@ -157,7 +161,8 @@ def main(_argv):
         class_names = utils.read_class_names(cfg.YOLO.CLASSES)
 
         # by default allow all classes in .names file
-        allowed_classes = list(class_names.values())
+        allowed_classes = ['person']
+        #allowed_classes = list(class_names.values())
         
         # custom allowed classes (uncomment line below to customize tracker for only people)
         #allowed_classes = ['person']

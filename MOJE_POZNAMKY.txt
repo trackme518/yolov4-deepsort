@@ -29,6 +29,9 @@ python convert_tflite.py --weights ./checkpoints/yolov4-416 --output ./checkpoin
 conda activate yolov4-gpu
 cd C:\Users\leisc\Documents\GitHub\yolov4-deepsort
 
+python D:\Users\vojtech.leischner\Documents\GitHub\yolov4-deepsort\convert_tflite.py --weights ./checkpoints/yolov4-416 --output ./checkpoints/yolov4-416-fp16.tflite --quantize_mode float16
+
+
 run normal with webcam
 python object_tracker.py --video 0 --output ./outputs/demo_webcam.avi --model yolov4
 
